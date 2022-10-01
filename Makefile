@@ -4,12 +4,11 @@ SRC_DIR =	./sources
 OBJ_DIR =	./objects
 LIBFT_DIR =	./ft_printf
 LIBFT =		$(addprefix $(LIBFT_DIR)/, libftprintf.a)
-SRC_FILES =	*.c
+SRC_FILES =	pipex.c get_comand.c handle_error.c  manager_process.c
 SRC =		$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ =		$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
-CFLAGS =	-g3 -O3 -Wall -Wextra -Werror
-
+CFLAGS =	-g3 -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
