@@ -1,4 +1,4 @@
-#include "../includes/pipex.h"
+#include "../includes/library.h"
 
 void	free_array(char **array)
 {
@@ -10,63 +10,34 @@ void	free_array(char **array)
 	free(array);
 }
 
-// char	*get_cmd_path(const char *cmd, char **envp)
-// {
-// 	t_path	p;
-
-// 	p.index[0] = 0;
-// 	p.index[1] = 0;
-// 	while (ft_strncmp(envp[p.index[0]], "PATH=", 5))
-// 		p.index[0]++;
-// 	p.aux[0] = ft_strjoin("/", cmd);
-// 	p.path_dirs = ft_split(envp[p.index[0]] + 5, ':');
-// 	while (p.path_dirs[p.index[1]])
-// 	{
-// 		p.aux[1] = ft_strjoin(p.path_dirs[p.index[1]], p.aux[0]);
-// 		if (!access(p.aux[1], F_OK))
-// 		{
-// 			free_array(p.path_dirs);
-// 			free(p.aux[0]);
-// 			return (p.aux[1]);
-// 		}
-// 		free(p.aux[1]);
-// 		p.index[1]++;
-// 	}
-// 	return (NULL);
-// }
-
 char	*get_acess_cmd(const char *path, char **dirs)
 {
-	int		index;
-	char	*aux;
-	char	*cmd_path;
+	t_cmd	c;
 
-	index = 0;
-	while (dirs[index])
+	c.index = 0;
+	while (dirs[c.index])
 	{
-		cmd_path = ft_strjoin(dirs[index], path);
-		if (!access(cmd_path, F_OK))
-			return (cmd_path);
-		free(cmd_path);
-		index++;
+		c.cmd_path = ft_strjoin(dirs[c.index], path);
+		if (!access(c.cmd_path, F_OK))
+			return (c.cmd_path);
+		free(c.cmd_path);
+		c.index++;
 	}
+	free_array(dirs);
 	return (NULL);
 }
 
 char	*get_cmd_path(const char *cmd, char **envp)
 {
-	int index;
-	char *path;
-	char **dirs;
-	char *cmd_path;
+	t_cmd c;
 
-	index = 0;
-	while (ft_strncmp(envp[index], "PATH=", 5))
-		index++;
-	path = ft_strjoin("/", cmd);
-	dirs = ft_split(envp[index] + 5, ':');
-	cmd_path = get_acess_cmd(path, dirs);
-	free(path);
-	free_array(dirs);
-	return (cmd_path);
+	c.index = 0;
+	while (ft_strncmp(envp[c.index], "PATH=", 5))
+		c.index++;
+	c.path = ft_strjoin("/", cmd);
+	c.dirs = ft_split(envp[c.index] + 5, ':');
+	c.cmd_path = get_acess_cmd(c.path, c.dirs);
+	free(c.path);
+	free_array(c.dirs);
+	return (c.cmd_path);
 }

@@ -1,4 +1,4 @@
-#include "../includes/pipex.h"
+#include "../includes/library.h"
 
 void	init_variable(t_data *d, int argc, char **argv, char **envp)
 {

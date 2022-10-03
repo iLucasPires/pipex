@@ -1,4 +1,4 @@
-#include "../includes/pipex.h"
+#include "../includes/library.h"
 
 void	child_process(t_data *d)
 {

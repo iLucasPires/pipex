@@ -1,4 +1,4 @@
-#include "../includes/pipex.h"
+#include "../includes/library.h"
 
 void	error(char *str, void *ptr)
 {
@@ -15,6 +15,11 @@ void	handle_argv(int argc, char **argv)
 		ft_putstr_fd("pipex: ", 2);
 		ft_putstr_fd(argv[1], 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
+		exit(1);
+	}
+	if (argc < 5)
+	{
+		ft_putstr_fd("pipex: too few arguments\n", 2);
 		exit(1);
 	}
 }

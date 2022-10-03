@@ -4,7 +4,7 @@ SRC_DIR =	./sources
 OBJ_DIR =	./objects
 LIBFT_DIR =	./ft_printf
 LIBFT =		$(addprefix $(LIBFT_DIR)/, libftprintf.a)
-SRC_FILES =	pipex.c get_comand.c handle_error.c  manager_process.c
+SRC_FILES =	pipex.c handle_arguments.c get_comand.c manager_process.c
 SRC =		$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ =		$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
@@ -30,4 +30,4 @@ fclean: clean
 	rm -f $(LIBFT)
 	make fclean -C $(LIBFT_DIR)
 
-re: fclean all
+re: fclean clean all
