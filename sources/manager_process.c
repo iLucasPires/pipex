@@ -2,6 +2,8 @@
 
 void	child_process(t_data *d)
 {
+
+	
 	t_child	c;
 
 	pipe(c.fd);
