@@ -1,15 +1,5 @@
 #include "../includes/library.h"
 
-void	free_array(char **array)
-{
-	int	index;
-
-	index = 0;
-	while (array[index])
-		free(array[index++]);
-	free(array);
-}
-
 char	*get_acess_cmd(const char *path, char **dirs)
 {
 	t_cmd	c;
@@ -23,7 +13,6 @@ char	*get_acess_cmd(const char *path, char **dirs)
 		free(c.cmd_path);
 		c.index++;
 	}
-	free_array(dirs);
 	return (NULL);
 }
 
@@ -37,7 +26,6 @@ char	*get_cmd_path(const char *cmd, char **envp)
 	c.path = ft_strjoin("/", cmd);
 	c.dirs = ft_split(envp[c.index] + 5, ':');
 	c.cmd_path = get_acess_cmd(c.path, c.dirs);
-	free(c.path);
-	free_array(c.dirs);
+	destruct_data(c.dirs, c.path);
 	return (c.cmd_path);
 }

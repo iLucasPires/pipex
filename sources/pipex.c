@@ -25,9 +25,8 @@ int	main(int argc, char **argv, char **envp)
 			last_process(&d);
 		else
 			child_process(&d);
-		destruct_data(&d);
+		destruct_data(d.cmd_arg, d.cmd_path);
 		d.cmd_index++;
 	}
 	return (0);
 }
-
