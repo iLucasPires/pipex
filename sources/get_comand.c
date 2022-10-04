@@ -15,7 +15,7 @@ char	*get_acess_cmd(const char *path, char **dirs)
 	}
 	return (NULL);
 }
-
+       
 char	*get_cmd_path(const char *cmd, char **envp)
 {
 	t_cmd c;

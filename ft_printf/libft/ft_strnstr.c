@@ -6,13 +6,9 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 19:15:59 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/06/04 06:46:19 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:34:46 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-#include <string.h>
-#include "libft.h"
 
 #include "libft.h"
 
