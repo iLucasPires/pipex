@@ -11,19 +11,22 @@ void	init_variable(t_data *d, int argc, char **argv, char **envp)
 	d->file[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 }
 
-char	**filter_argv(char *argv)
+char	**find_cmd_path(char *argv)
 {
-	char	**aux;
-	int		index;
+	int		i;
+	char	*aux;
+	char	**aux_split;
 
-	index = 0;
-	aux = ft_split(argv, ' ');
-	while (aux[index])
+	i = 0;
+	aux_split = ft_split(argv, ' ');
+	while (aux_split[i])
 	{
-		aux[index] = ft_strtrim(aux[index], "'");
-		index++;
+		aux = aux_split[i];
+		aux_split[i] = ft_strtrim(aux, "'");
+		free(aux);
+		i++;
 	}
-	return (aux);
+	return (aux_split);
 }
 
 int	main(int argc, char **argv, char **envp)
