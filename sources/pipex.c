@@ -37,12 +37,12 @@ int	main(int argc, char **argv, char **envp)
 	init_variable(&d, argc, argv, envp);
 	while (d.cmd_index < d.cmd_count + 2)
 	{
-		d.cmd_arg = filter_argv(argv[d.cmd_index]);
+		d.cmd_arg = find_cmd_path(argv[d.cmd_index]);
 		d.cmd_path = get_cmd_path(d.cmd_arg[0], envp);
-		// if (d.cmd_index == d.cmd_count + 1)
-		// 	last_process(&d);
-		// else
-		// 	child_process(&d);
+		if (d.cmd_index == d.cmd_count + 1)
+			last_process(&d);
+		else
+			child_process(&d);
 		destruct_data(d.cmd_arg, d.cmd_path);
 		d.cmd_index++;
 	}
