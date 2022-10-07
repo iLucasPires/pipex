@@ -28,16 +28,6 @@ void	handle_space(char *argv)
 	}
 }
 
-// char	**handle_space(char *argv)
-// {
-// 	char	*cmd;
-// 	int		word;
-// 	int		i;
-
-// 	i = 0;
-// 	word = 0;
-// }
-
 char	**filter_argv(char *argv)
 {
 	int		i;
