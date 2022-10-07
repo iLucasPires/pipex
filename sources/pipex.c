@@ -11,19 +11,50 @@ void	init_variable(t_data *d, int argc, char **argv, char **envp)
 	d->file[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 }
 
+void	handle_space(char *argv)
+{
+	int	i;
+	int	active_quote;
+
+	i = 0;
+	active_quote = 1;
+	while (argv[i])
+	{
+		if (argv[i] == '\'' || argv[i] == '\"')
+			active_quote = !active_quote;
+		else if (argv[i] == ' ' && active_quote)
+			argv[i] = -1;
+		i++;
+	}
+}
+
+// char	**handle_space(char *argv)
+// {
+// 	char	*cmd;
+// 	int		word;
+// 	int		i;
+
+// 	i = 0;
+// 	word = 0;
+// }
+
 char	**filter_argv(char *argv)
 {
-	char	**aux;
-	int		index;
+	int		i;
+	char	*aux;
+	char	**aux_split;
 
-	index = 0;
-	aux = ft_split(argv, ' ');
-	while (aux[index])
+	i = 0;
+	handle_space(argv);
+	aux_split = ft_split(argv, -1);
+	while (aux_split[i])
 	{
-		aux[index] = ft_strtrim(aux[index], "'");
-		index++;
+		aux = aux_split[i];
+		aux_split[i] = ft_strtrim(aux, "'");
+		free(aux);
+		i++;
 	}
-	return (aux);
+	return (aux_split);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -36,10 +67,10 @@ int	main(int argc, char **argv, char **envp)
 	{
 		d.cmd_arg = filter_argv(argv[d.cmd_index]);
 		d.cmd_path = get_cmd_path(d.cmd_arg[0], envp);
-		// if (d.cmd_index == d.cmd_count + 1)
-		// 	last_process(&d);
-		// else
-		// 	child_process(&d);
+		if (d.cmd_index == d.cmd_count + 1)
+			last_process(&d);
+		else
+			child_process(&d);
 		destruct_data(d.cmd_arg, d.cmd_path);
 		d.cmd_index++;
 	}

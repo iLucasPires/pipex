@@ -1,6 +1,9 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# define INPUT 0
+# define OUTPUT 1
+
 typedef struct s_data
 {
 	int		argc;
