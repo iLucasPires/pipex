@@ -44,7 +44,8 @@ void	last_process(t_data *d)
 		dup2(d->file[1], STDOUT_FILENO);
 		execute(d->cmd_path, d->cmd_arg, d->envp);
 	}
-	close(d->file[0]);
-	close(d->file[1]);
 	waitpid(c.pid, &c.status, 0);
+	close(d->file[1]);
+	close(d->file[0]);
+	exit(0);
 }

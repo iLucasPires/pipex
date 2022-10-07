@@ -11,32 +11,14 @@ void	init_variable(t_data *d, int argc, char **argv, char **envp)
 	d->file[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 }
 
-void	handle_space(char *argv)
-{
-	int	i;
-	int	active_quote;
-
-	i = 0;
-	active_quote = 1;
-	while (argv[i])
-	{
-		if (argv[i] == '\'' || argv[i] == '\"')
-			active_quote = !active_quote;
-		else if (argv[i] == ' ' && active_quote)
-			argv[i] = -1;
-		i++;
-	}
-}
-
-char	**filter_argv(char *argv)
+char	**find_cmd_path(char *argv)
 {
 	int		i;
 	char	*aux;
 	char	**aux_split;
 
 	i = 0;
-	handle_space(argv);
-	aux_split = ft_split(argv, -1);
+	aux_split = ft_split(argv, ' ');
 	while (aux_split[i])
 	{
 		aux = aux_split[i];
@@ -55,7 +37,7 @@ int	main(int argc, char **argv, char **envp)
 	init_variable(&d, argc, argv, envp);
 	while (d.cmd_index < d.cmd_count + 2)
 	{
-		d.cmd_arg = filter_argv(argv[d.cmd_index]);
+		d.cmd_arg = find_cmd_path(argv[d.cmd_index]);
 		d.cmd_path = get_cmd_path(d.cmd_arg[0], envp);
 		if (d.cmd_index == d.cmd_count + 1)
 			last_process(&d);
