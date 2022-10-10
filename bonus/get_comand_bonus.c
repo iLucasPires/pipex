@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_comand.c                                       :+:      :+:    :+:   */
+/*   get_comand_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:24:58 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 13:44:05 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:54:31 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/library.h"
+#include "includes/library_bonus.h"
 
 char	*get_acess_cmd(const char *path, char **dirs)
 {

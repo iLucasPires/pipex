@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   struct_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:43:35 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 19:30:41 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:01:50 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef STRUCT_BONUS_H
+# define STRUCT_BONUS_H
 
 # define INPUT 0
 # define OUTPUT 1
@@ -29,6 +29,7 @@ typedef struct s_data
 	int		cmd_index;
 	int		file[2];
 	int		status;
+	int		error;
 }			t_data;
 
 typedef struct s_cmd

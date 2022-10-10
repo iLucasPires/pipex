@@ -2,14 +2,24 @@ NAME =		pipex
 HEADER =	./includes
 SRC_DIR =	./sources
 OBJ_DIR =	./objects
+BONUS_DIR =	./bonus
 LIBFT_DIR =	./ft_printf
 LIBFT =		$(addprefix $(LIBFT_DIR)/, libftprintf.a)
-SRC_FILES =	pipex.c handle_arguments.c get_comand.c manager_process.c
-SRC =		$(addprefix $(SRC_DIR)/, $(SRC_FILES))
-OBJ =		$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
-CFLAGS =	-g3 -Wall -Wextra -Werror
+SRC_FILES =	pipex.c manager_process.c handle_arguments.c get_comand.c
+
+BONUS_FILES = pipex_bonus.c manager_process_bonus.c handle_arguments_bonus.c get_comand_bonus.c
+
+SRC =		$(addprefix $(SRC_DIR)/, $(SRC_FILES))
+
+BONUS =		$(addprefix $(OBJ_DIR)/, $(BONUS_FILES:.c=.o))
+OBJ =		$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
+CFLAGS =	-g3 -O3 -Wall -Wextra -Werror
+
 all: $(NAME)
+
+bonus:
+	@make OBJ="$(BONUS)" all --no-print-directory
 
 $(NAME): $(OBJ) $(LIBFT)
 	cc $(OBJ) $(LIBFT) $(CFLAGS) -o $(NAME)
@@ -19,7 +29,11 @@ $(LIBFT):
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
 	@mkdir -p $(OBJ_DIR)
-	cc -c $< -o $@
+	cc $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c
+	mkdir -p $(OBJ_DIR)
+	cc $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -30,4 +44,6 @@ fclean: clean
 	rm -f $(LIBFT)
 	make fclean -C $(LIBFT_DIR)
 
-re: fclean clean all
+re: fclean all
+
+.PHONY: all clean fclean re bonus

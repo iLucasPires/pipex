@@ -1,21 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_arguments.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/10 13:24:55 by lpires-n          #+#    #+#             */
+/*   Updated: 2022/10/10 15:00:45 by lpires-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/library.h"
 
-void	handle_argv(int argc, char **argv)
+void	handle_argv(int argc)
 {
 	if (argc < 5)
 	{
 		ft_putstr_fd("pipex: too few arguments\n", 2);
 		exit(1);
 	}
+	else if (argc > 5)
+	{
+		ft_putstr_fd("pipex: too many arguments\n", 2);
+		exit(1);
+	}
 }
 
-void	destruct_data(char **mtx, char *array)
+void	destruct_data(char **array_multi, char *array)
 {
-	int		index;
+	int	index;
 
 	index = 0;
-	while (mtx[index])
-		free(mtx[index++]);
-	free(mtx);
+	while (array_multi[index])
+		free(array_multi[index++]);
+	free(array_multi);
 	free(array);
 }
