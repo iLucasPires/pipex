@@ -3,6 +3,8 @@
 
 # define INPUT 0
 # define OUTPUT 1
+# define CHILD 0
+# define SPACE_NULL 1
 
 typedef struct s_data
 {
@@ -14,6 +16,8 @@ typedef struct s_data
 	int		cmd_count;
 	int		cmd_index;
 	int		file[2];
+	int 	status;
+	int error;
 }			t_data;
 
 typedef struct s_cmd

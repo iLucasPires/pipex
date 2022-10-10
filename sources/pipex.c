@@ -8,43 +8,61 @@ void	init_variable(t_data *d, int argc, char **argv, char **envp)
 	d->cmd_count = argc - 3;
 	d->cmd_index = 2;
 	d->file[0] = open(argv[1], O_RDONLY, 0777);
-	d->file[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	d->file[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (d->file[1] == -1)
+	{
+		ft_putstr_fd("pipex: ", 2);
+		ft_putstr_fd(argv[argc - 1], 2);
+		ft_putstr_fd(": Permission denied\n", 2);
+		exit(1);
+	}
 }
 
-char	**find_cmd_path(char *argv)
+char	**filter_argv(char *cmd)
 {
-	int		i;
-	char	*aux;
-	char	**aux_split;
+	int		index;
+	char	*temp;
+	char	**cmd_arg;
+	int		active_quote;
 
-	i = 0;
-	aux_split = ft_split(argv, ' ');
-	while (aux_split[i])
+	index = 0;
+	active_quote = 1;
+	while (cmd[index])
 	{
-		aux = aux_split[i];
-		aux_split[i] = ft_strtrim(aux, "'");
-		free(aux);
-		i++;
+		if (cmd[index] == '\'')
+			active_quote = !active_quote;
+		else if (cmd[index] == ' ' && active_quote)
+			cmd[index] = SPACE_NULL;
+		index++;
 	}
-	return (aux_split);
+	cmd_arg = ft_split(cmd, SPACE_NULL);
+	index = 0;
+	while (cmd_arg[++index])
+	{
+		temp = cmd_arg[index];
+		cmd_arg[index] = ft_strtrim(temp, "'");
+		free(temp);
+	}
+	return (cmd_arg);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_data	d;
+	t_data	data;
 
 	handle_argv(argc, argv);
-	init_variable(&d, argc, argv, envp);
-	while (d.cmd_index < d.cmd_count + 2)
+	init_variable(&data, argc, argv, envp);
+	while (data.cmd_index < data.cmd_count + 2)
 	{
-		d.cmd_arg = find_cmd_path(argv[d.cmd_index]);
-		d.cmd_path = get_cmd_path(d.cmd_arg[0], envp);
-		if (d.cmd_index == d.cmd_count + 1)
-			last_process(&d);
+		data.cmd_arg = filter_argv(argv[data.cmd_index]);
+		data.cmd_path = get_cmd_path(data.cmd_arg[0], envp);
+		if (data.cmd_index == data.cmd_count + 1)
+			last_process(&data);
 		else
-			child_process(&d);
-		destruct_data(d.cmd_arg, d.cmd_path);
-		d.cmd_index++;
+			child_process(&data);
+		destruct_data(data.cmd_arg, data.cmd_path);
+		data.cmd_index++;
 	}
+	exit(WEXITSTATUS(data.status));
 	return (0);
 }

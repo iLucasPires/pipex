@@ -1,14 +1,14 @@
 #include "../includes/library.h"
 
-void	execute(char *cmd, char **argv, char **envp)
+void	execute(t_data *data)
 {
-	if (cmd)
-		execve(cmd, argv, envp);
+	if (data->file[INPUT] != -1 && data->cmd_path)
+		execve(data->cmd_path, data->cmd_arg, data->envp);
 	else
 	{
-		ft_putstr_fd(argv[0], 2);
-		ft_putstr_fd(": command not found\n", 2);
-		destruct_data(argv, cmd);
+		ft_putstr_fd(data->argv[1], 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		destruct_data(data->cmd_arg, data->cmd_path);
 		exit(1);
 	}
 }
@@ -19,18 +19,18 @@ void	child_process(t_data *d)
 
 	pipe(c.fd);
 	c.pid = fork();
-	if (c.pid == 0)
+	if (c.pid == CHILD)
 	{
-		close(c.fd[0]);
-		close(d->file[1]);
-		dup2(d->file[0], STDIN_FILENO);
-		dup2(c.fd[1], STDOUT_FILENO);
-		execute(d->cmd_path, d->cmd_arg, d->envp);
+		close(c.fd[INPUT]);
+		close(d->file[OUTPUT]);
+		dup2(d->file[INPUT], STDIN_FILENO);
+		dup2(c.fd[OUTPUT], STDOUT_FILENO);
+		execute(d);
 	}
-	close(c.fd[1]);
-	close(d->file[0]);
-	waitpid(c.pid, &c.status, 0);
-	d->file[0] = c.fd[0];
+	close(c.fd[OUTPUT]);
+	close(d->file[INPUT]);
+	waitpid(c.pid, &d->status, 0);
+	d->file[INPUT] = c.fd[INPUT];
 }
 
 void	last_process(t_data *d)
@@ -38,14 +38,13 @@ void	last_process(t_data *d)
 	t_child	c;
 
 	c.pid = fork();
-	if (c.pid == 0)
+	if (c.pid == CHILD)
 	{
-		dup2(d->file[0], STDIN_FILENO);
-		dup2(d->file[1], STDOUT_FILENO);
-		execute(d->cmd_path, d->cmd_arg, d->envp);
+		dup2(d->file[INPUT], STDIN_FILENO);
+		dup2(d->file[OUTPUT], STDOUT_FILENO);
+		execute(d);
 	}
-	waitpid(c.pid, &c.status, 0);
-	close(d->file[1]);
-	close(d->file[0]);
-	exit(0);
+	close(d->file[OUTPUT]);
+	close(d->file[INPUT]);
+	waitpid(c.pid, &d->status, 0);
 }

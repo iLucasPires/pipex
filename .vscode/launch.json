@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "pipex",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/pipex",
+            "args": [ "Makefie", "ls" ,"lds", "output"],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+
+        }
+
+    ]
+}
