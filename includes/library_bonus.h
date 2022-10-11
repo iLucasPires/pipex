@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   library.h                                          :+:      :+:    :+:   */
+/*   library_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:43:22 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 21:55:03 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/11 00:18:46 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBRARY_H
-# define LIBRARY_H
+#ifndef LIBRARY_BONUS_H
+# define LIBRARY_BONUS_H
 
 # include "../libft/includes/ft_printf.h"
 # include <fcntl.h>

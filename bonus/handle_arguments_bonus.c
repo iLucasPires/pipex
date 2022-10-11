@@ -6,7 +6,7 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:24:55 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 22:28:03 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/11 00:14:29 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ void	handle_argv(int argc)
 	if (argc < 5)
 	{
 		ft_putstr_fd("pipex: too few arguments\n", 2);
-		exit(EXIT_FAILURE);
-	}
-	else if (argc > 5)
-	{
-		ft_putstr_fd("pipex: too many arguments\n", 2);
 		exit(EXIT_FAILURE);
 	}
 }
