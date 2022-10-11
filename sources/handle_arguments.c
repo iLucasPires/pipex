@@ -6,11 +6,11 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:24:55 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 21:32:55 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/11 00:24:34 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/library.h"
+#include "../includes/pipex.h"
 
 void	handle_argv(int argc)
 {

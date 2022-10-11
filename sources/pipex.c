@@ -6,11 +6,11 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 19:28:43 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 19:28:43 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/11 00:24:48 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/library.h"
+#include "../includes/pipex.h"
 
 void	init_variable(t_data *d, int argc, char **argv, char **envp)
 {

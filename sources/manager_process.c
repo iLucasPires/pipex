@@ -6,11 +6,11 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:23:54 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 21:41:28 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/11 00:24:44 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/library.h"
+#include "../includes/pipex.h"
 
 void	execute(t_data *data)
 {

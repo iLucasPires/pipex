@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 19:28:43 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 19:28:43 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/11 00:25:40 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/library.h"
+#include "../includes/pipex_bonus.h"
 
 void	init_variable(t_data *d, int argc, char **argv, char **envp)
 {
