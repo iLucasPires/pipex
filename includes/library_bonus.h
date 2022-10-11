@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_bonus.h                                     :+:      :+:    :+:   */
+/*   library.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 13:43:35 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 15:01:50 by lpires-n         ###   ########.fr       */
+/*   Created: 2022/10/10 13:43:22 by lpires-n          #+#    #+#             */
+/*   Updated: 2022/10/10 21:55:03 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_BONUS_H
-# define STRUCT_BONUS_H
+#ifndef LIBRARY_H
+# define LIBRARY_H
 
+# include "../libft/includes/ft_printf.h"
+# include <fcntl.h>
+# include <stdlib.h>
+# include <sys/wait.h>
 # define INPUT 0
 # define OUTPUT 1
 # define CHILD 0
 # define SPACE_NULL 1
+# define ERROR_CMD 127
 
 typedef struct s_data
 {
@@ -29,7 +34,6 @@ typedef struct s_data
 	int		cmd_index;
 	int		file[2];
 	int		status;
-	int		error;
 }			t_data;
 
 typedef struct s_cmd
@@ -46,5 +50,13 @@ typedef struct s_child
 	int		pid;
 	int		status;
 }			t_child;
+
+char		*get_cmd_path(const char *cmd, char **envp);
+void		free_array(char **array);
+void		error(char *str, void *ptr);
+void		handle_argv(int argc);
+void		child_process(t_data *d);
+void		last_process(t_data *d);
+void		destruct_data(char **mtx, char *array);
 
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manager_process_bonus.c                            :+:      :+:    :+:   */
+/*   manager_process.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:23:54 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 20:21:54 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/10 22:16:00 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/library_bonus.h"
+#include "../includes/library.h"
 
 void	execute(t_data *data)
 {
@@ -18,10 +18,13 @@ void	execute(t_data *data)
 		execve(data->cmd_path, data->cmd_arg, data->envp);
 	else
 	{
-		ft_putstr_fd(data->argv[1], 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
+		if (data->file[INPUT] == -1)
+		{
+			ft_putstr_fd(data->argv[1], 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
+		}
 		destruct_data(data->cmd_arg, data->cmd_path);
-		exit(127);
+		exit(ERROR_CMD);
 	}
 }
 

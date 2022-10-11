@@ -6,7 +6,7 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:23:54 by lpires-n          #+#    #+#             */
-/*   Updated: 2022/10/10 20:09:07 by lpires-n         ###   ########.fr       */
+/*   Updated: 2022/10/10 21:41:28 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	execute(t_data *data)
 			ft_putstr_fd(data->argv[1], 2);
 			ft_putstr_fd(": No such file or directory\n", 2);
 		}
-		if (!data->cmd_path)
+		if (data->cmd_path == NULL)
 		{
-			ft_putstr_fd(data->cmd_arg[0], 2);
+			ft_putstr_fd(data->argv[1], 2);
 			ft_putstr_fd(": command not found\n", 2);
 		}
 		destruct_data(data->cmd_arg, data->cmd_path);
-		exit(127);
+		exit(ERROR_CMD);
 	}
 }
 
@@ -55,7 +55,6 @@ void	child_process(t_data *d)
 	close(d->file[INPUT]);
 	waitpid(c.pid, &d->status, 0);
 	d->file[INPUT] = c.fd[INPUT];
-	
 }
 
 void	last_process(t_data *d)

@@ -3,12 +3,12 @@ HEADER =	./includes
 SRC_DIR =	./sources
 OBJ_DIR =	./objects
 BONUS_DIR =	./bonus
-LIBFT_DIR =	./ft_printf
+LIBFT_DIR =	./libft
 LIBFT =		$(addprefix $(LIBFT_DIR)/, libftprintf.a)
 
-SRC_FILES =	pipex.c manager_process.c handle_arguments.c get_comand.c
+SRC_FILES =	pipex.c manager_process.c handle_arguments.c
 
-BONUS_FILES = pipex_bonus.c manager_process_bonus.c handle_arguments_bonus.c get_comand_bonus.c
+BONUS_FILES = pipex_bonus.c manager_process_bonus.c handle_arguments_bonus.c
 
 SRC =		$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
