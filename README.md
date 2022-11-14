@@ -19,14 +19,17 @@ This project is about creating a pipe system between two processes. The first pr
 - Run `./pipex file1 cmd1 cmd2 file2` to execute the program
 
 ## Mandatory part
+
 - [x] The executable file must be named pipex.
 - [x] The project must be written in accordance with the Norm.
 - [x] The executable must take three arguments: the name of the first file, the name of the second file, and the command line to execute between the two files.
 
 ## Bonus part
+
 - [x] The executable must take four arguments: the name of the first file, the name of the second file, the command line to execute before the first file, and the command line to execute after the second file.
 - [x] The executable must handle multiple commands in the command line.
 - [x] The executable must handle errors.
+- [ ] The executable must be able to handle the command line as a Heredoc.
 
 ## Example
 
