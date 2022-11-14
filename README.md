@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://game.42sp.org.br/static/assets/achievements/ft_printfe.png">
+    <img src="https://game.42sp.org.br/static/assets/achievements/pipexm.png">
 </p>
 
 <p align="center">
