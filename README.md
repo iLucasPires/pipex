@@ -29,11 +29,15 @@ This project is about creating a pipe system between two processes. The first pr
 - [x] The executable must handle errors.
 
 ## Example
+
+two commands
+
 ``` bash
-$ ./pipex infile "ls -l" "wc -l" outfile
+$> ./pipex infile "ls -l" "wc -l" outfile
 ```
 
-## Example
+more than two commands
+
 ``` bash
-$ ./pipex infile "ls -l" "grep a" "wc -l" outfile
+$> ./pipex infile "ls -l" "grep a" "wc -l" outfile
 ```
