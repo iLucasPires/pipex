@@ -18,6 +18,11 @@ This project is about creating a pipe system between two processes. The first pr
 - Run `make` to compile the executable
 - Run `./pipex file1 cmd1 cmd2 file2` to execute the program
 
+## Requirements
+
+- C compiler (clang or gcc)
+- Make
+
 ## Mandatory part
 
 - [x] The executable file must be named pipex.
